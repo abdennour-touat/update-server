@@ -1,4 +1,4 @@
 Flask
 Gunicorn
-dot_env
+python-dotenv
 flask_restful
