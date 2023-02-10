@@ -1,8 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template,send_from_directory
+from flask_restful import Api, Resource, reqparse
 
-api = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+api= Api(app)
 
-@api.route('/api/profile')
+@app.route('/')
+def run():
+    return send_from_directory(app.static_folder,"index.html")
+@app.route('/api/profile')
 def my_profile():
     response_body = {
         "name": "Nagato",

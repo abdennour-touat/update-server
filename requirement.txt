@@ -1,0 +1,4 @@
+Flask
+Gunicorn
+dot-env
+flask_restful
