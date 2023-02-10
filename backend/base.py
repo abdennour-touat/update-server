@@ -1,7 +1,7 @@
 from flask import Flask, render_template,send_from_directory
 from flask_restful import Api, Resource, reqparse
 
-app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+app = Flask(__name__, static_folder='dist', static_url_path='/')
 api= Api(app)
 
 @app.route('/')
