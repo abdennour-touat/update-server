@@ -28,7 +28,7 @@ def time_cache(max_age, maxsize=None, typed=False):
 
 tauri_releases_bp = Blueprint("tauri_releases", __name__, url_prefix="/tauri-releases")
 
-SOFTWARE_PLUS_DESKTOP_REPO = "abdennour-touat/software-plus/google-keep-desktop-app"
+SOFTWARE_PLUS_DESKTOP_REPO = "abdennour-touat/software-plus"
 
 PLATFORMS = [  # platform, extension
     # (('linux-x86_64',), 'amd64.AppImage.tar.gz'),
@@ -36,16 +36,16 @@ PLATFORMS = [  # platform, extension
     (("windows-x86_64",), "x64_en-US.msi.zip"),
 ]
 
-
+# https://github.com/abdennour-touat/software-plus/releases/download/app-v0.1.3/software-plus_0.1.3_x64_en-US.msi.zip
 @time_cache(60 * 5)  # every 5 minutes
 def get_latest_gh_release(repo) -> dict:
 
     github_latest_release_url = f"https://api.github.com/repos/{repo}/releases/latest"
+    print(github_latest_release_url)
     try:
         release = requests.get(github_latest_release_url).json()
     except requests.RequestException:
         return {}
-    print(release)
     release_response = {
         "version": release["tag_name"],
         "notes": release["body"]
